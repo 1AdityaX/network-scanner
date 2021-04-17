@@ -1,22 +1,9 @@
-
-
-
-# with mac_vendor
-
 import scapy.all as scapy
 import requests
 import time
-import optparse
 import os
 
 
-ip_address = "192.168.1.1/24"
-
-
-def parse_args():
-    parser = optparse.OptionParser()
-    parser.add_option("-t", "--target", dest="ip", help="[-] Enter the target, type --help for more info.")
-    return parser.parse_args()
 
 
 def scan(ip):
@@ -36,20 +23,19 @@ def scan(ip):
     return client_list
 
 
-def print_result(result_list):
+def result(result_list):
     for client in result_list:
         print(client["ip"] + "\t" + client["mac"] + "\t" + client["mac_vendor"])
+
+
 if os.geteuid() != 0:
 	print("You need root privileges to run this script!")
 
 else:
-	try:
-		print("______________________________________________________")
-		print(" IP\t\t MAC Address\t\t MAC Vendor")
-		print("------------------------------------------------------")
-		scan_result = scan(ip_address)
-		print_result(scan_result)
-	except:
-	    options = parse_args()
-	    scan_results = scan("192.164.1.1/24")
-	    print_result(scan_results)
+    ip_address = input("Enter the ip address and range that you want to scan(ex: 192.168.1.1/24): ")
+    print("______________________________________________________")
+    print(" IP\t\t MAC Address\t\t MAC Vendor")
+    print("------------------------------------------------------")
+    scan_result = scan(ip_address)
+    result(scan_result)
+	
