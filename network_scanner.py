@@ -17,7 +17,7 @@ def scan(ip):
 
             vendor = requests.get('http://api.macvendors.com/' + address).text
             time.sleep(1)
-            client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc, "mac_vendor": vendor}
+            client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc, "mac_vendor": vendor if str(vendor) != '{"errors":{"detail":"Not Found"}}' else "Unknown Vendor"}
             client_list.append(client_dict)
     return client_list
 
@@ -35,13 +35,10 @@ def result(result_list):
     print(a)
 
 if os.geteuid() != 0:
-	print("You need root privileges to run this script!")
-
+    print("You need root privileges to run this script!")
+    
 else:
     ip_address = input("Enter the ip address and range that you want to scan(ex: 192.168.1.1/24): ")
-    print("______________________________________________________")
-    print(" IP\t\t MAC Address\t\t MAC Vendor")
-    print("------------------------------------------------------")
     scan_result = scan(ip_address)
     result(scan_result)
-	
+
