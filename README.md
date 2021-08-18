@@ -1,6 +1,6 @@
 # network scannner
 
-A simple Network Scanner which discorvers all connected clients in your wifi
+A simple Network Scanner which discorvers all connected clients in your network/wifi
 
 ## Requirements
 Any Linux distro<br/>
