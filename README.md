@@ -10,7 +10,7 @@ python 3.9.5
 ## How to use?
 Download the script
 ```
-git clone https://github.com/ChaosXsniffer/network-scanner.git
+git clone https://github.com/ADITYA1913/network-scanner.git
 ```
 Go to the project directory
 ```
